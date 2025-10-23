@@ -10,6 +10,7 @@ import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/form-utils';
 import productViewMagnificPopup from './halothemes/productViewMagnificPopup';
 import setActiveCategory from './halothemes/setActiveCategory';
+import requestQuote from './product/request-quote';
 
 export default class Product extends PageManager {
     constructor() {
@@ -40,6 +41,9 @@ export default class Product extends PageManager {
         // HaloThemes functions
         productViewMagnificPopup();
         setActiveCategory();
+
+        // Request Quote functionality
+        requestQuote();
 
         // $('a.videos-tab').click(function(event) {
         //     event.preventDefault();

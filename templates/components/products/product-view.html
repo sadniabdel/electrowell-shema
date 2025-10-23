@@ -397,14 +397,10 @@
                     {{/if}}
 
                 </form>
-                {{#if settings.show_wishlist}}
-                    <form class="form" method="post" action="{{product.add_to_wishlist_url}}" data-wishlist-add>
-                        <input type="hidden" name="variation_id" value="">
-                        <button class="button btn" type="submit">
-                            <span>{{lang 'account.wishlists.add_item'}}</span>
-                        </button>
-                    </form>
-                {{/if}}
+                {{!-- Request Quote Button (replaces Add to Wishlist) --}}
+                <button class="btn btn-primary btn-request-quote" type="button" data-reveal-id="modal-request-quote">
+                    Request a Quote <i class="fa fa-chevron-right"></i>
+                </button>
             </div>
 
             {{>components/common/share}}
@@ -488,4 +484,79 @@
     </a>
     <div class="modal-content"></div>
     <div class="loadingOverlay"></div>
+</div>
+
+{{!-- Request Quote Modal --}}
+<div id="modal-request-quote" class="modal modal--large" data-reveal>
+    <div class="modal-header">
+        <h2 class="modal-header-title">Request a Quote</h2>
+        <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+    </div>
+    <div class="modal-body">
+        <form class="form" id="request-quote-form" method="post" action="/pages/contact-us/" data-request-quote-form>
+            <fieldset class="form-fieldset">
+                <div class="form-field">
+                    <label class="form-label" for="quote-fullname">
+                        Full Name <small>Required</small>
+                    </label>
+                    <input type="text" class="form-input" id="quote-fullname" name="fullname" required>
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="quote-email">
+                        Email <small>Required</small>
+                    </label>
+                    <input type="email" class="form-input" id="quote-email" name="email" required>
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="quote-company">
+                        Company <small>Optional</small>
+                    </label>
+                    <input type="text" class="form-input" id="quote-company" name="company">
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="quote-country">
+                        Country <small>Optional</small>
+                    </label>
+                    <select class="form-select" id="quote-country" name="country">
+                        <option value="">Select Country</option>
+                        <option value="DE">Germany</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="FR">France</option>
+                        <option value="IT">Italy</option>
+                        <option value="ES">Spain</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="BE">Belgium</option>
+                        <option value="AT">Austria</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="PL">Poland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="DK">Denmark</option>
+                        <option value="NO">Norway</option>
+                        <option value="FI">Finland</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label class="form-label" for="quote-message">
+                        Message <small>Required</small>
+                    </label>
+                    <textarea class="form-input" id="quote-message" name="message" rows="6" required
+                        data-product-title="{{product.title}}"
+                        data-product-sku="{{product.sku}}"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Submit Inquiry <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>

@@ -725,3 +725,45 @@ ul.all-categories-list{
 [data-content-region="header_bottom"] {
 	clear: both;
 }
+
+/* Request Quote Button - Matches Add to Cart Style */
+.btn-request-quote {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* Request Quote Modal Styles */
+#modal-request-quote {
+	.form-field {
+		margin-bottom: 20px;
+	}
+
+	.form-label {
+		font-weight: 600;
+		margin-bottom: 8px;
+		display: block;
+
+		small {
+			font-weight: normal;
+			font-style: italic;
+			color: #666;
+		}
+	}
+
+	.form-input,
+	.form-select {
+		width: 100%;
+	}
+
+	textarea.form-input {
+		min-height: 150px;
+		resize: vertical;
+	}
+
+	.form-actions {
+		margin-top: 25px;
+		text-align: right;
+	}
+}
