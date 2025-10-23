@@ -450,6 +450,22 @@ h1.header-logo {
     margin:0;
 	line-height:1.05;
 }
+
+// Prevent logo from causing layout shift
+.header-logo-image {
+	max-width: 483px;
+	height: auto;
+	aspect-ratio: 483 / 98;
+	display: block;
+	// Ensure the logo doesn't resize unexpectedly
+	width: auto;
+
+	@media (max-width: 767px) {
+		max-width: 160px;
+		// Maintain aspect ratio on mobile
+		aspect-ratio: 483 / 98;
+	}
+}
 .header-panel .wishlist-link .icon svg {
     fill: stencilColor('wishlist-icon-color');
 }

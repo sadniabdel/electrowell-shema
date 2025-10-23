@@ -56,8 +56,15 @@
 }
 
 .heroCarousel {
-    min-height: 100px;
+    // Reserve space for carousel images to prevent layout shift
+    // Images are 790x400, so we set min-height to prevent CLS
+    min-height: 400px;
     min-width: 300px;
+
+    @media (max-width: 767px) {
+        min-height: 250px; // Smaller on mobile
+    }
+
     & .owl-nav {
 		bottom:35px;
 		left:50px;
@@ -68,6 +75,9 @@
         width: 100%!important;
         max-width: 100%;
         margin: 0 auto;
+        // Explicit aspect ratio to prevent shifts
+        aspect-ratio: 790 / 400;
+        height: auto;
     }
 	.owl-nav{
         @media (max-width: 1023px) {

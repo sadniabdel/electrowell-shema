@@ -1,6 +1,6 @@
 
 /* Custom Styles */
-body{	
+body{
     font-family: $fontFamily-sans;
 	line-height:1.55;
 	background: stencilColor('color-background-body');
@@ -8,6 +8,18 @@ body{
     font-size: fontSize("base");
 	color:stencilColor('color-textBase');
 	letter-spacing:normal;
+	// Prevent layout shift during font loading
+	// font-display: swap is already set, but we ensure smooth transition
+	text-rendering: optimizeSpeed;
+	// Reserve minimum space to prevent body content shift
+	min-height: 100vh;
+}
+
+// Prevent layout shifts in main content areas
+.container,
+.container_page {
+	// Use CSS containment to prevent layout recalculation propagation
+	contain: layout style;
 }
 h1, h2, h3,h4,h5,h6{
 	font-family:$fontFamily-headings;
@@ -16,6 +28,8 @@ h1, h2, h3,h4,h5,h6{
 	line-height:1.35;
 	letter-spacing:normal;
 	text-transform:capitalize;
+	// Reduce CLS from font loading
+	text-rendering: optimizeSpeed;
 }
 h1{
 	font-size:22px;
