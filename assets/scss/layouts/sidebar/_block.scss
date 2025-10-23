@@ -1,4 +1,3 @@
-@use "sass:color";
 
 // =============================================================================
 // SIDEBAR BLOCKS (CSS)
@@ -116,7 +115,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 			margin: 0 -15px 15px; 
 			color:stencilColor('title_block_textcolor');
 			background:stencilColor('title_block_bgcolor');
-			border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
+			border-bottom:1px solid lighten(stencilColor('color-border-page'), 10%);
 			text-transform: capitalize;
 			font-size:16px;
 			font-weight:700;
@@ -135,7 +134,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 					padding: 7px 0;
 					display: inline-block;
 					font-weight:400;
-					color: ( color.adjust(stencilColor('color-textBase'), $red: -80, $green: -80, $blue: -80) );
+					color: ( darken(stencilColor('color-textBase'), 10%) );
 					font-size:13px;
 					&:hover{
 						color:stencilColor('color-textLink--hover');
@@ -204,7 +203,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 			& > li{
 				& > .is-clicked{
 					& ~ a{
-						color: ( color.adjust(stencilColor('color-textBase'), $red: -80, $green: -80, $blue: -80) );	
+						color: ( darken(stencilColor('color-textBase'), 10%) );	
 						font-weight:700;
 					}
 				}
@@ -366,7 +365,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 		font-size:12px;
 		padding-left:0!important;
 		&:before{
-			color: color.adjust(stencilColor('color-textBase'), $red: 124, $green: 124, $blue: 124);
+			color: lighten(stencilColor('color-textBase'), 10%);
 			position:relative;
 			top:auto;
 			left:0;
@@ -392,7 +391,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 		}
 		& > .navPages-item{
 			& > i.fa {
-				color: color.adjust(stencilColor('color-textBase'), $red: 119, $green: 119, $blue: 119);			
+				color: lighten(stencilColor('color-textBase'), 10%);			
 			}
 			&:hover{
 				& > i.fa {
@@ -417,7 +416,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
 					}
 					& i.fa {
 						top:15px;
-						color: color.adjust(stencilColor('color-textBase'), $red: 119, $green: 119, $blue: 119);	
+						color: lighten(stencilColor('color-textBase'), 10%);	
 						&.is-clicked::before {
 							content: "\f106";
 						}
@@ -498,7 +497,7 @@ aside.page-sidebar.col-sm-3 ~ main.page-content.col-sm-9 {
     & li {
         padding: 10px 0;
         & + li {
-            border-top: 1px dotted color.adjust(stencilColor('color-border-page'), $red: 9, $green: 8, $blue: 8);
+            border-top: 1px dotted lighten(stencilColor('color-border-page'), 10%);
         }
         & a {
             display: inline-block;

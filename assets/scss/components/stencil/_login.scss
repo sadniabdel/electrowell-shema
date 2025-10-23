@@ -1,4 +1,3 @@
-@use "sass:color";
 
 // =============================================================================
 // LOGIN (CSS)
@@ -48,7 +47,7 @@
 
 .new-customer {
 	& > .panel{
-		background:color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
+		background:darken(stencilColor('color-background-body'), 10%);
 		padding:25px;
 		border-radius:4px;
 		-moz-border-radius:4px;

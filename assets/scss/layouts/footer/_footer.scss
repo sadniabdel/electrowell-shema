@@ -1,11 +1,10 @@
-@use "sass:color";
 
 // =============================================================================
 // FOOTER (CSS)
 // =============================================================================
 #footer-wrapper {
     background: stencilColor('footer-backgroundColor');
-	border-top:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
+	border-top:1px solid darken(stencilColor('footer-backgroundColor'), 10%);
 	.footerInfo{
 		background:stencilColor('footer-infor-bgColor');
 		text-align:center;
@@ -14,7 +13,7 @@
 		font-family: $fontFamily-page;
 		font-weight:400;
 		font-size: 14px;
-		border-bottom:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
+		border-bottom:1px solid darken(stencilColor('footer-backgroundColor'), 10%);
 		p{
 			margin:0;
 			@media(max-width:600px){
@@ -46,24 +45,24 @@
 		}
 	}
 	.middle-footer{
-		border-bottom:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
+		border-bottom:1px solid darken(stencilColor('footer-backgroundColor'), 10%);
 		overflow:hidden;
 		text-align:center;
 		@media(min-width:992px){
 			& > .container{
-				/*border-left:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);*/
-				/*border-right:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);*/
+				/*border-left:1px solid darken(stencilColor('footer-backgroundColor'), 10%);*/
+				/*border-right:1px solid darken(stencilColor('footer-backgroundColor'), 10%);*/
 			}
 		}
 		[class*='col-sm']{
 			padding:30px 20px;
-			border-right:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
+			border-right:1px solid darken(stencilColor('footer-backgroundColor'), 10%);
 			color:stencilColor('footer-column-text-color');
 			&:last-child{
 				border:none;
 			}
 			p.fa-icon{
-				color:color.adjust(stencilColor('footer-column-text-color'), $red: 21, $green: 21, $blue: 21);
+				color:lighten(stencilColor('footer-column-text-color'), 10%);
 				.fa{
 					font-size:42px;
 				}
@@ -73,7 +72,7 @@
 				padding:0;
 				font-size:18px;
 				font-weight:400;
-				color: color.adjust(stencilColor('footer-column-heading-color'), $red: 20, $green: 20, $blue: 20);
+				color: lighten(stencilColor('footer-column-heading-color'), 10%);
 			}
 			p.text{
 				margin:0;
@@ -256,7 +255,7 @@
 					margin-right:5px;
 					font-family:"FontAwesome";
 					content: "\f054";
-					color: color.adjust(stencilColor('footer-column-text-color'), $red: 124, $green: 124, $blue: 124);
+					color: lighten(stencilColor('footer-column-text-color'), 10%);
 					font-size: 10px;
 					font-weight: 400;
 				}

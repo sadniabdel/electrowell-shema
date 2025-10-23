@@ -2,7 +2,6 @@
 // TYPOGRAPHY
 // =============================================================================
 
-@use "sass:color";
 
 // Global Type Vars
 // -----------------------------------------------------------------------------
@@ -87,10 +86,10 @@ $letterSpacing-smallest:        0.25px;
 
 /* Button*/
 $color-buttons:									 stencilColor('button--primary-backgroundColor');
-$color-button-background:						color.adjust(stencilColor('button--primary-backgroundColor'), $red: -25, $green: -25, $blue: -25);
+$color-button-background:						darken(stencilColor('button--primary-backgroundColor'), 10%);
 
 $custom-button-background:					          stencilColor('color-other-textLink--hover');
-$custom-button-bggradient:						 color.adjust(stencilColor('color-other-textLink--hover'), $red: -10, $green: -35, $blue: -29);
+$custom-button-bggradient:						 darken(stencilColor('color-other-textLink--hover'), 10%);
 
 @mixin home-block{
 	border:1px solid stencilColor('color-border-page');
@@ -102,7 +101,7 @@ $custom-button-bggradient:						 color.adjust(stencilColor('color-other-textLink
 		margin:0 0 10px;
 		padding:12px 20px;
 		display:block;
-		background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
+		background: darken(stencilColor('color-background-body'), 10%);
 	}
 	.owl-nav{
 		position:absolute;

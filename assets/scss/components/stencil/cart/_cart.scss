@@ -1,4 +1,3 @@
-@use "sass:color";
 
 // =============================================================================
 // CART (CSS)
@@ -106,7 +105,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 
 .cart-header-item {
     padding: 17px 20px 10px;
-	background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
+	background: darken(stencilColor('color-background-body'), 10%);
     font-family: $fontFamily-headings;
     font-size: 12px;
     font-weight: 700;
@@ -144,7 +143,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 		}
 	}
 	.cart-item{
-		border-top: 1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
+		border-top: 1px solid lighten(stencilColor('color-border-page'), 10%);
 		&:first-child{
 			border-top:none;
 		}
@@ -219,7 +218,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 			margin-right:7px;
 		}
 		dd{
-			color:( color.adjust(stencilColor('form-label-font-color'), $red: 102, $green: 102, $blue: 102) );
+			color:( lighten(stencilColor('form-label-font-color'), 10%) );
 			margin:0;
 		}
 		&.cart-item-options--giftWrapping{
@@ -355,7 +354,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 
 .cart-item-value {
     padding-left: $cart-item-spacing;
-    color: color.adjust(stencilColor('basic-price-color'), $red: 50, $green: 50, $blue: 50);
+    color: lighten(stencilColor('basic-price-color'), 10%);
     @include breakpoint("medium") {
         padding-left: 0;
     }
@@ -428,7 +427,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 
 .cart-total {
     @include clearfix;	
-	border-top: 1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
+	border-top: 1px solid lighten(stencilColor('color-border-page'), 10%);
 	padding:15px 0;
 	&:first-child{
 		border-top:none;
@@ -527,7 +526,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 .shipping-estimate-hide,
 .gift-certificate-add,
 .gift-certificate-cancel {
-    color: ( color.adjust(stencilColor('color-textBase'), $red: 70, $green: 70, $blue: 70) );
+    color: ( lighten(stencilColor('color-textBase'), 10%) );
     padding: 0 0 2px;
     transition: color 0.15s ease;
 	border-bottom:1px solid transparent;
@@ -734,7 +733,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
     .preview-cart-titles {
         min-height: 41px;
         padding:0;
-		background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
+		background: darken(stencilColor('color-background-body'), 10%);
 		overflow:hidden;
 		border-radius:4px 4px 0 0;
 		-moz-border-radius:4px 4px 0 0;
@@ -805,7 +804,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 			display:inline-block;
 		}
 		.prod-brand{
-			color: color.adjust(stencilColor('color-textBase'), $red: 73, $green: 73, $blue: 73);		
+			color: lighten(stencilColor('color-textBase'), 10%);		
 			text-align:left;
 			margin:0 0 7px;
 			font-family: $fontFamily-sans;
@@ -877,7 +876,7 @@ $cart-item-label-offset: $cart-thumbnail-maxWidth + $cart-item-spacing;
 	padding:11px 20px;
 	overflow:hidden;
 	text-align:right;
-	border-top: 1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
+	border-top: 1px solid lighten(stencilColor('color-border-page'), 10%);
 	& > div{
 		padding:0;
 	}
