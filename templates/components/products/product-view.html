@@ -192,11 +192,19 @@
                 {{/if}}
                 {{#if product.price}}
                     {{!-- Hide price if it's 0 --}}
-                    {{#unless (or (product.price.without_tax.value '===' 0) (product.price.with_tax.value '===' 0))}}
-                        <div class="productView-price">
-                            {{> components/products/price price=product.price schema_org=schema}}
-                        </div>
-                    {{/unless}}
+                    {{#if product.price.without_tax.value}}
+                        {{#if product.price.without_tax.value '>' 0}}
+                            <div class="productView-price">
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            </div>
+                        {{/if}}
+                    {{else if product.price.with_tax.value}}
+                        {{#if product.price.with_tax.value '>' 0}}
+                            <div class="productView-price">
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
                 {{/if}}
                 {{{region name="product_below_price"}}}
                 {{product.detail_messages}}                
@@ -391,13 +399,48 @@
                         {{!-- Button Group: Add to Cart and Get Quote side-by-side --}}
                         <div class="product-actions-group">
                             {{!-- Disable Add to Cart if price is 0 --}}
-                            <button id="form-action-addToCart"
-                                    data-wait-message="{{lang 'products.adding_to_cart'}}"
-                                    class="btn btn-primary btn-add-to-cart {{#if (or (product.price.without_tax.value '===' 0) (product.price.with_tax.value '===' 0))}}btn-disabled{{/if}}"
-                                    type="submit"
-                                    {{#if (or (product.price.without_tax.value '===' 0) (product.price.with_tax.value '===' 0))}}disabled{{/if}}>
-                                {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
-                            </button>
+                            {{#if product.price.without_tax.value}}
+                                {{#unless product.price.without_tax.value '>' 0}}
+                                    <button id="form-action-addToCart"
+                                            data-wait-message="{{lang 'products.adding_to_cart'}}"
+                                            class="btn btn-primary btn-add-to-cart btn-disabled"
+                                            type="submit"
+                                            disabled>
+                                        {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
+                                    </button>
+                                {{else}}
+                                    <button id="form-action-addToCart"
+                                            data-wait-message="{{lang 'products.adding_to_cart'}}"
+                                            class="btn btn-primary btn-add-to-cart"
+                                            type="submit">
+                                        {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
+                                    </button>
+                                {{/unless}}
+                            {{else if product.price.with_tax.value}}
+                                {{#unless product.price.with_tax.value '>' 0}}
+                                    <button id="form-action-addToCart"
+                                            data-wait-message="{{lang 'products.adding_to_cart'}}"
+                                            class="btn btn-primary btn-add-to-cart btn-disabled"
+                                            type="submit"
+                                            disabled>
+                                        {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
+                                    </button>
+                                {{else}}
+                                    <button id="form-action-addToCart"
+                                            data-wait-message="{{lang 'products.adding_to_cart'}}"
+                                            class="btn btn-primary btn-add-to-cart"
+                                            type="submit">
+                                        {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
+                                    </button>
+                                {{/unless}}
+                            {{else}}
+                                <button id="form-action-addToCart"
+                                        data-wait-message="{{lang 'products.adding_to_cart'}}"
+                                        class="btn btn-primary btn-add-to-cart"
+                                        type="submit">
+                                    {{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}
+                                </button>
+                            {{/if}}
                             <button class="btn btn-primary btn-get-quote" type="button" data-reveal-id="modal-request-quote">
                                 Get Quote <i class="fa fa-chevron-right"></i>
                             </button>
