@@ -1,12 +1,12 @@
 {
-  "name": "eMartica Stencil",
-  "version": "1.0.0",
+  "name": "Electrowell",
+  "version": "2.0.0",
   "meta": {
-    "price": 150,
-    "documentation_url": "https://www.themevale.com/contact",
-    "author_name": "HaloThemes",
-    "author_email": "support@halothemes.com",
-    "author_support_url": "https://www.themevale.com/contact",
+    "price": 0,
+    "documentation_url": "https://electrowell.de/pages/kontakt",
+    "author_name": "Electrowell",
+    "author_email": "info@electrowell.de",
+    "author_support_url": "https://electrowell.de/pages/kontakt",
     "composed_image": "composed.png",
     "features": [
       "fully_responsive",
