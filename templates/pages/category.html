@@ -9,6 +9,10 @@ category:
 ---
 {{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
 {{#partial "head"}}
+    {{!-- Category Page JSON-LD Schemas --}}
+    {{> components/common/schema/collection-schema}}
+    {{> components/common/schema/breadcrumb-schema}}
+
     {{#if pagination.category.previous}}
         <link rel="prev" href="{{pagination.category.previous}}">
     {{/if}}

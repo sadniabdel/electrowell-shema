@@ -12,6 +12,11 @@ product:
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 ---
+{{#partial "head"}}
+    {{!-- Product Page JSON-LD Schemas --}}
+    {{> components/common/schema/product-schema}}
+    {{> components/common/schema/breadcrumb-schema}}
+{{/partial}}
 {{#partial "page"}}
 <div class="container">
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}

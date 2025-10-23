@@ -1,3 +1,8 @@
+{{#partial "head"}}
+    {{!-- Blog Post JSON-LD Schemas --}}
+    {{> components/common/schema/blog-schema}}
+    {{> components/common/schema/breadcrumb-schema}}
+{{/partial}}
 {{#partial "page"}}
 <div class="container">
    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}

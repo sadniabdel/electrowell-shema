@@ -1,0 +1,39 @@
+{{!-- BlogPosting Schema for blog posts --}}
+{{#if blog}}
+{{#if blog.post}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{json blog.post.title}},
+  {{#if blog.post.body}}
+  "articleBody": {{json (stripTags blog.post.body)}},
+  {{/if}}
+  "url": "{{blog.post.url}}",
+  "datePublished": "{{blog.post.date_published}}",
+  {{#if blog.post.date_modified}}
+  "dateModified": "{{blog.post.date_modified}}",
+  {{else}}
+  "dateModified": "{{blog.post.date_published}}",
+  {{/if}}
+  {{#if blog.post.author}}
+  "author": {
+    "@type": "Person",
+    "name": {{json blog.post.author}}
+  },
+  {{/if}}
+  {{#if blog.post.thumbnail}}
+  "image": "{{blog.post.thumbnail}}",
+  {{/if}}
+  "publisher": {
+    "@type": "Organization",
+    "name": "Electrowell",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{cdn settings.logo.image}}"
+    }
+  }
+}
+</script>
+{{/if}}
+{{/if}}

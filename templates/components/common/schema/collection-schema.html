@@ -1,0 +1,14 @@
+{{!-- CollectionPage Schema for Category pages --}}
+{{#if category}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{json category.name}},
+  {{#if category.description}}
+  "description": {{json (stripTags category.description)}},
+  {{/if}}
+  "url": "{{category.url}}"
+}
+</script>
+{{/if}}

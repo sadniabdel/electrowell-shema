@@ -1,0 +1,97 @@
+{{!-- Enhanced SEO Meta Tags: Canonical, Hreflang, Robots, OG, Twitter --}}
+
+{{!-- Canonical Tag --}}
+{{#if head.title}}
+<link rel="canonical" href="{{getVar 'request.absoluteUrl'}}">
+{{/if}}
+
+{{!-- Hreflang Tags for Multi-storefront Support --}}
+{{!-- DE Storefront --}}
+<link rel="alternate" href="https://electrowell.de{{urls.path}}" hreflang="de-DE">
+{{!-- UK Storefront --}}
+<link rel="alternate" href="https://electrowell.co.uk{{urls.path}}" hreflang="en-GB">
+{{!-- Default --}}
+<link rel="alternate" href="{{getVar 'request.absoluteUrl'}}" hreflang="x-default">
+
+{{!-- Meta Robots Logic --}}
+{{#if (or
+    (if page_type '==' 'search_results')
+    (if page_type '==' 'cart')
+    (if page_type '==' 'checkout')
+    (if page_type '==' 'account')
+    (if page_type '==' 'account_order')
+    (if page_type '==' 'account_orderstatus')
+    (if page_type '==' 'account_addressbook')
+    (if page_type '==' 'account_wishlists')
+    (if page_type '==' 'account_inbox')
+    (if page_type '==' 'account_returns')
+    (if page_type '==' 'account_recentitems')
+)}}
+<meta name="robots" content="noindex,follow">
+{{else}}
+<meta name="robots" content="index,follow">
+{{/if}}
+
+{{!-- Enhanced Open Graph Meta Tags --}}
+{{#if product}}
+<meta property="og:type" content="product">
+<meta property="og:title" content="{{product.title}} - Electrowell">
+{{#if product.description}}
+<meta property="og:description" content="{{stripTags product.description}}">
+{{/if}}
+{{#if product.images}}
+<meta property="og:image" content="{{getImage product.images.[0] 'product'}}">
+<meta property="og:image:secure_url" content="{{getImage product.images.[0] 'product'}}">
+{{/if}}
+<meta property="og:url" content="{{product.url}}">
+<meta property="og:site_name" content="Electrowell">
+{{#if product.price.without_tax}}
+<meta property="product:price:amount" content="{{product.price.without_tax.value}}">
+<meta property="product:price:currency" content="{{currency_selector.active_currency_code}}">
+{{/if}}
+{{#if product.availability}}
+<meta property="product:availability" content="{{#if product.can_purchase}}in stock{{else}}out of stock{{/if}}">
+{{/if}}
+{{else if category}}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{category.name}} - Electrowell">
+{{#if category.description}}
+<meta property="og:description" content="{{stripTags category.description}}">
+{{/if}}
+<meta property="og:url" content="{{category.url}}">
+<meta property="og:site_name" content="Electrowell">
+{{else if blog.post}}
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{blog.post.title}} - Electrowell">
+<meta property="og:url" content="{{blog.post.url}}">
+<meta property="og:site_name" content="Electrowell">
+{{#if blog.post.thumbnail}}
+<meta property="og:image" content="{{blog.post.thumbnail}}">
+<meta property="og:image:secure_url" content="{{blog.post.thumbnail}}">
+{{/if}}
+<meta property="article:published_time" content="{{blog.post.date_published}}">
+{{else}}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{head.title}}">
+<meta property="og:url" content="{{getVar 'request.absoluteUrl'}}">
+<meta property="og:site_name" content="Electrowell">
+<meta property="og:description" content="Electrowell - Your trusted source for industrial automation and drives">
+{{/if}}
+
+{{!-- Twitter Card Meta Tags --}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{head.title}}">
+{{#if product}}
+{{#if product.description}}
+<meta name="twitter:description" content="{{stripTags product.description}}">
+{{/if}}
+{{#if product.images}}
+<meta name="twitter:image" content="{{getImage product.images.[0] 'product'}}">
+{{/if}}
+{{else if category}}
+{{#if category.description}}
+<meta name="twitter:description" content="{{stripTags category.description}}">
+{{/if}}
+{{else}}
+<meta name="twitter:description" content="Electrowell - Your trusted source for industrial automation and drives">
+{{/if}}

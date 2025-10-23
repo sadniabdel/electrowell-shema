@@ -1,0 +1,25 @@
+{{!-- BreadcrumbList Schema --}}
+{{#if breadcrumbs}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{urls.home}}"
+    }
+    {{#each breadcrumbs}}
+    ,{
+      "@type": "ListItem",
+      "position": {{add @index 2}},
+      "name": {{json this.name}},
+      "item": "{{this.url}}"
+    }
+    {{/each}}
+  ]
+}
+</script>
+{{/if}}

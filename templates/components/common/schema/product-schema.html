@@ -1,0 +1,59 @@
+{{!-- Product Schema with offers, ratings, and brand --}}
+{{#if product}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{json product.title}},
+  {{#if product.description}}
+  "description": {{json (stripTags product.description)}},
+  {{/if}}
+  {{#if product.sku}}
+  "sku": {{json product.sku}},
+  {{/if}}
+  {{#if product.mpn}}
+  "mpn": {{json product.mpn}},
+  {{/if}}
+  {{#if product.gtin}}
+  "gtin13": {{json product.gtin}},
+  {{/if}}
+  {{#if product.brand}}
+  "brand": {
+    "@type": "Brand",
+    "name": {{json product.brand.name}}
+  },
+  {{/if}}
+  {{#if product.images}}
+  "image": [
+    {{#each product.images}}
+    {{json this.data}}{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  {{/if}}
+  "url": "{{product.url}}",
+  "offers": {
+    "@type": "Offer",
+    {{#if product.price.without_tax}}
+    "price": "{{product.price.without_tax.value}}",
+    {{else if product.price.with_tax}}
+    "price": "{{product.price.with_tax.value}}",
+    {{/if}}
+    "priceCurrency": "{{currency_selector.active_currency_code}}",
+    {{#if product.availability}}
+    "availability": "{{#if product.can_purchase}}https://schema.org/InStock{{else}}https://schema.org/OutOfStock{{/if}}",
+    {{/if}}
+    "url": "{{product.url}}",
+    "priceValidUntil": "{{moment format='YYYY-12-31'}}"
+  }
+  {{#if product.num_reviews}}
+  {{#if product.rating}}
+  ,"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{product.rating}}",
+    "reviewCount": "{{product.num_reviews}}"
+  }
+  {{/if}}
+  {{/if}}
+}
+</script>
+{{/if}}
