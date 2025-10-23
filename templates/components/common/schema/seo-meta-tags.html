@@ -14,19 +14,27 @@
 <link rel="alternate" href="{{getVar 'request.absoluteUrl'}}" hreflang="x-default">
 
 {{!-- Meta Robots Logic --}}
-{{#if (or
-    (if page_type '==' 'search_results')
-    (if page_type '==' 'cart')
-    (if page_type '==' 'checkout')
-    (if page_type '==' 'account')
-    (if page_type '==' 'account_order')
-    (if page_type '==' 'account_orderstatus')
-    (if page_type '==' 'account_addressbook')
-    (if page_type '==' 'account_wishlists')
-    (if page_type '==' 'account_inbox')
-    (if page_type '==' 'account_returns')
-    (if page_type '==' 'account_recentitems')
-)}}
+{{#if (page_type '==' 'search_results')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'cart')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'checkout')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_order')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_orderstatus')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_addressbook')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_wishlists')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_inbox')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_returns')}}
+<meta name="robots" content="noindex,follow">
+{{else if (page_type '==' 'account_recentitems')}}
 <meta name="robots" content="noindex,follow">
 {{else}}
 <meta name="robots" content="index,follow">
