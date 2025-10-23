@@ -14,6 +14,11 @@
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
 
+        {{!-- Preconnect to external domains for faster loading --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="dns-prefetch" href="https://cdn11.bigcommerce.com">
+
         {{!-- Preload Critical Resources --}}
         <link rel="preload" href="{{cdn '/assets/css/theme.css'}}" as="style">
         <link rel="preload" href="{{cdn '/assets/dist/theme-bundle.main.js'}}" as="script">
