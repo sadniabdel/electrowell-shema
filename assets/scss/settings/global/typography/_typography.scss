@@ -86,22 +86,22 @@ $letterSpacing-smallest:        0.25px;
 
 /* Button*/
 $color-buttons:									 stencilColor('button--primary-backgroundColor');
-$color-button-background:						darken(stencilColor('button--primary-backgroundColor'), 10%);
+$color-button-background:						if(stencilColor('button--primary-backgroundColor'), darken(stencilColor('button--primary-backgroundColor'), 10%), #333);
 
 $custom-button-background:					          stencilColor('color-other-textLink--hover');
-$custom-button-bggradient:						 darken(stencilColor('color-other-textLink--hover'), 10%);
+$custom-button-bggradient:						if(stencilColor('color-other-textLink--hover'), darken(stencilColor('color-other-textLink--hover'), 10%), #333);
 
 @mixin home-block{
 	border:1px solid stencilColor('color-border-page');
 	border-radius:4px;
 	-moz-border-radius:4px;
 	overflow:hidden;
-	margin-bottom:30px;	
+	margin-bottom:30px;
 	.module-heading{
 		margin:0 0 10px;
 		padding:12px 20px;
 		display:block;
-		background: darken(stencilColor('color-background-body'), 10%);
+		background: if(stencilColor('color-background-body'), darken(stencilColor('color-background-body'), 10%), #f5f5f5);
 	}
 	.owl-nav{
 		position:absolute;
