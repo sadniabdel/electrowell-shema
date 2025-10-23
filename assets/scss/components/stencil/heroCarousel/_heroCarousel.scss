@@ -5,7 +5,7 @@
 	-moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.08);
 	border-radius: 3px;
 	-moz-border-radius: 3px;
-	border:1px solid lighten(stencilColor('color-border-page'), 10%);
+	border:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 	background:#fff;
 	position:absolute;
 	top:9px;
@@ -28,7 +28,7 @@
 			font-size:12px;
 		}
 		&.owl-next{
-			border-left:1px solid lighten(stencilColor('color-border-page'), 10%);
+			border-left:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 		}
 		&.owl-next:before{
 			content: "\f054";

@@ -14,7 +14,7 @@
         width: 100%;
     }
     + .blog {
-        border-top: 1px solid lighten(stencilColor('color-border-page'), 10%);
+        border-top: 1px solid safe-lighten(stencilColor('color-border-page'), 10%);
         margin-top: 35px;
         padding-top: 25px;
     }
@@ -44,7 +44,7 @@
     font-weight: 700;
     a {
         text-decoration: none;
-		color:darken(stencilColor('color-textBase'), 10%);
+		color:safe-darken(stencilColor('color-textBase'), 10%);
     }
 }
 

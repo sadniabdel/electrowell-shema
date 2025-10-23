@@ -231,7 +231,7 @@
                 display: inline-block!important;
                 font-weight: 700;
                 text-transform: capitalize;
-                color:darken(stencilColor('color-textBase'), 10%);
+                color:safe-darken(stencilColor('color-textBase'), 10%);
                 font-size: 12px;
 				float:left;
 				margin-left:30px;

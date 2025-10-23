@@ -47,7 +47,7 @@
 
 .new-customer {
 	& > .panel{
-		background:darken(stencilColor('color-background-body'), 10%);
+		background:safe-darken(stencilColor('color-background-body'), 10%);
 		padding:25px;
 		border-radius:4px;
 		-moz-border-radius:4px;

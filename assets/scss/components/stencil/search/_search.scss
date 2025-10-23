@@ -3,7 +3,7 @@
 // SEARCH
 // =============================================================================
 #search-results-content  ~ #product-listing-container{
-	border:1px solid darken(stencilColor('color-border-page'), 10%);
+	border:1px solid safe-darken(stencilColor('color-border-page'), 10%);
 	border-radius:4px;
 	-moz-border-radius:4px;
 	overflow:hidden;
@@ -283,7 +283,7 @@
         overflow: hidden;
 		margin:0;
         & + li {
-            border-top: 1px solid (lighten(stencilColor('color-border-page'), 10%));
+            border-top: 1px solid (safe-lighten(stencilColor('color-border-page'), 10%));
         }
         &:hover {
             background: #f6f7f9;
@@ -295,7 +295,7 @@
             & figure {
                 float: left;
                 width: 100px;
-                border: 1px solid (lighten(stencilColor('color-border-page'), 10%));
+                border: 1px solid (safe-lighten(stencilColor('color-border-page'), 10%));
                 text-align: center;
                 border-radius: 3px;
                 margin: 0;

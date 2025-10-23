@@ -83,7 +83,7 @@
 				margin:0 0 30px;
 				padding:0 0 10px;
 				border:none;
-				border-bottom:1px solid lighten(stencilColor('color-border-page'), 10%);
+				border-bottom:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 				&:last-child{
 					border:none;
 					margin-bottom:0;
@@ -97,7 +97,7 @@
 						width: 36px;
 						height: 36px;
 						background:none;
-						border:1px solid darken(stencilColor('color-border-page'), 10%);
+						border:1px solid safe-darken(stencilColor('color-border-page'), 10%);
 						svg {
 							display: none;
 							fill: #4c9e4c;
@@ -239,7 +239,7 @@
 				display:none;
 			}
 			.cart-header{
-				background: darken(stencilColor('color-background-body'), 10%);
+				background: safe-darken(stencilColor('color-background-body'), 10%);
 				padding: 15px 30px;
 				display: block;
 				.optimizedCheckout-headingSecondary{
@@ -304,7 +304,7 @@
 }
 cart-prices{
 	.cart-section{
-		border-top:1px solid lighten(stencilColor('color-border-page'), 10%);
+		border-top:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 	}
 }
 .cart-section{
@@ -388,7 +388,7 @@ cart-prices{
 	font-size:12px;
 }
 .cart-modal-header.optimizedCheckout-orderSummary{
-	background: darken(stencilColor('color-background-body'), 10%);
+	background: safe-darken(stencilColor('color-background-body'), 10%);
 	padding: 12px 30px;
 	border-radius:4px 4px 0 0;
 }

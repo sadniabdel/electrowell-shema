@@ -1,0 +1,31 @@
+// =============================================================================
+// COLOR HELPERS - Safe color operations with fallbacks
+// =============================================================================
+//
+// These functions safely handle color operations when stencilColor() might
+// return null/undefined values, preventing Sass compilation errors.
+//
+
+// Safe darken function with fallback
+// @param $color - The color to darken
+// @param $amount - The percentage to darken by
+// @param $fallback - Fallback color if $color is null (default: #333)
+@function safe-darken($color, $amount, $fallback: #333) {
+    @if $color {
+        @return darken($color, $amount);
+    } @else {
+        @return $fallback;
+    }
+}
+
+// Safe lighten function with fallback
+// @param $color - The color to lighten
+// @param $amount - The percentage to lighten by
+// @param $fallback - Fallback color if $color is null (default: #f5f5f5)
+@function safe-lighten($color, $amount, $fallback: #f5f5f5) {
+    @if $color {
+        @return lighten($color, $amount);
+    } @else {
+        @return $fallback;
+    }
+}

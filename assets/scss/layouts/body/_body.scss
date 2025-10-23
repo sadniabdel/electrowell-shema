@@ -252,7 +252,7 @@ nav#mobile-customer ul li .not-logged {
 nav#mobile-customer ul li .not-logged a {
     display: block;
 	& + a{
-		border-top:1px solid lighten(stencilColor('color-border-page'), 10%);
+		border-top:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 	}
 }
 
@@ -300,7 +300,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 .st-menu {
 	ul {
 		li {
-			border-bottom:1px solid lighten(stencilColor('color-border-page'), 10%);
+			border-bottom:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 			a {
 				font-family: $fontFamily-headings;
 				font-size: 14px;
@@ -309,7 +309,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				padding: 13px 20px 12px;
 				letter-spacing: 0;
 				text-transform: capitalize;				
-				color:darken(stencilColor('color-textBase'), 10%);
+				color:safe-darken(stencilColor('color-textBase'), 10%);
 				outline: none;
 				&:hover{
 					color: stencilColor('color-textLink--hover');
@@ -356,7 +356,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				}
 			}
 			&#currency-converter{
-				border-top:1px solid lighten(stencilColor('color-border-page'), 10%);
+				border-top:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 				margin-top:15px;
 				position:relative;
 				& > label{
@@ -462,7 +462,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 .st-menu ul li .navPage-subMenu,
 .st-menu ul li .subMegaMenu {
     display: none;
-	border-top:1px solid lighten(stencilColor('color-border-page'), 10%);
+	border-top:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
     & .container {
         width: 100%;
     }
@@ -567,7 +567,7 @@ nav#mobile-customer ul li .not-logged a:hover {
     width: 100% !important;
     overflow: hidden;
 	border:none;
-	border-top:1px solid lighten(stencilColor('color-border-page'), 10%);
+	border-top:1px solid safe-lighten(stencilColor('color-border-page'), 10%);
 }
 
 #mobile-categories .subMegaMenu > div,
@@ -599,7 +599,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				padding: 13px 20px 5px;
 				letter-spacing: 0;
 				text-transform: capitalize;
-				color:darken(stencilColor('color-textBase'), 10%);
+				color:safe-darken(stencilColor('color-textBase'), 10%);
 			}
 			& > a{
 				font-weight:400;

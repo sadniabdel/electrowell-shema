@@ -105,7 +105,7 @@
 			}
 			& > .cateArea-content{
 				overflow:hidden;
-				color: ( lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
+				color: ( safe-lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
 				text-align:left;
 				font-weight:500;
 				font-family: $fontFamily-sans;
@@ -148,7 +148,7 @@
 						position: relative;
 						display:block;
 						padding: 9px 15px;
-						color: ( lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
+						color: ( safe-lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
 						font-weight:400;
 						font-family: $fontFamily-sans;
 						font-size: fontSize("base");
@@ -460,7 +460,7 @@
 
 .navPages-container li.hasMegamenu > .subMegaMenu .cateArea ul li a {
     position: relative;
-    color: ( lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
+    color: ( safe-lighten(stencilColor('mainNav-dropdown-text-color'), 10%) );
 	border:none;
 	&:hover{
 		color:stencilColor('mainNav-dropdown-text-color-hover');
