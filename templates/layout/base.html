@@ -2,11 +2,23 @@
 <html class="no-js" lang="{{ locale_name }}">
     <head>
         <title>{{ head.title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        {{!-- Enhanced SEO Meta Tags --}}
+        {{> components/common/schema/seo-meta-tags}}
+
         {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
+
         <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        {{!-- Preload Critical Resources --}}
+        <link rel="preload" href="{{cdn '/assets/css/theme.css'}}" as="style">
+        <link rel="preload" href="{{cdn '/assets/dist/theme-bundle.main.js'}}" as="script">
+
+        {{!-- Critical CSS --}}
         {{{stylesheet '/assets/css/theme.css'}}}
 
         {{{head.scripts}}}
@@ -17,8 +29,13 @@
         {{inject 'maintenanceMode' settings.maintenance}}
         {{inject 'urls' urls}}
         {{{snippet 'htmlhead'}}}
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-589d7698f6fa5c40"></script>
+
+        {{!-- Global JSON-LD Schemas --}}
+        {{> components/common/schema/website-schema}}
+        {{> components/common/schema/organization-schema}}
+
+        {{!-- Defer non-critical third-party scripts --}}
+        <script async type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-589d7698f6fa5c40"></script>
     </head>
     <body class="page-type-{{page_type}}">
         <div id="st-container" class="st-container">
@@ -89,31 +106,36 @@
                 {{> components/common/footer }}
 
                 <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-                <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+                <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}" defer></script>
 
                 <script>
                     // Exported in app.js
-                    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+                    window.addEventListener('DOMContentLoaded', function() {
+                        window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+                    });
                 </script>
 
                 <script>
-
                 {{#if theme_settings.halothemes_sticky_navigation}}
                     //Sticky Navigation
-                    window.stickyNavigation();
+                    window.addEventListener('DOMContentLoaded', function() {
+                        window.stickyNavigation();
+                    });
                 {{/if}}
-
                 </script>
+
                 {{#if page_type '==' 'product'}}
                     {{#if theme_settings.halothemes_size_chart}}
                         <script>
-                        window.haloSizeChart();
+                        window.addEventListener('DOMContentLoaded', function() {
+                            window.haloSizeChart();
+                        });
                         </script>
                     {{/if}}
                 {{/if}}
 
-                <script src="{{cdn '/assets/js/theme/halothemes/jquery.min.js'}}"></script>
-                <script src="{{cdn '/assets/modernizr-custom.js'}}"></script>
+                <script src="{{cdn '/assets/js/theme/halothemes/jquery.min.js'}}" defer></script>
+                <script src="{{cdn '/assets/modernizr-custom.js'}}" defer></script>
 
                 {{#if theme_settings.halothemes_megamenu}}
                 <!-- Begin HaloThemes MegaMenu -->
