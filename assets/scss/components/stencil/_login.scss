@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // LOGIN (CSS)
 // =============================================================================
@@ -46,7 +48,7 @@
 
 .new-customer {
 	& > .panel{
-		background:stencilColor('color-background-body') - #090806;
+		background:color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
 		padding:25px;
 		border-radius:4px;
 		-moz-border-radius:4px;

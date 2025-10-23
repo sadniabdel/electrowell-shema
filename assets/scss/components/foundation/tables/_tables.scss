@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // TABLES (CSS)
 // =============================================================================
@@ -73,7 +75,7 @@
 				font-size: 12px;
 				font-weight: 700;
 				text-transform: uppercase;
-				color: ( stencilColor('color-textBase') + #797979 );
+				color: ( color.adjust(stencilColor('color-textBase'), $red: 121, $green: 121, $blue: 121) );
                 @include breakpoint("small") {
                     text-align: center;
                     &:first-child {

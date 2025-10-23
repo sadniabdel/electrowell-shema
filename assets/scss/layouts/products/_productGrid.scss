@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // PRODUCT GRID (CSS)
 // =============================================================================
@@ -215,8 +217,8 @@
 
 .prod-item,
 .productGrid .product {
-	border-right:1px solid stencilColor('color-border-page') + #131313;
-	border-bottom:1px solid stencilColor('color-border-page') + #131313;
+	border-right:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
+	border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
     & article.card {
         margin: 0 0 20px;
         padding: 0;
@@ -232,7 +234,7 @@
 		margin:0 0 15px;
 		min-height:20px;
 		label{
-			color: ( stencilColor('color-textBase') + #494949 );
+			color: ( color.adjust(stencilColor('color-textBase'), $red: 73, $green: 73, $blue: 73) );
 			&:before{
 				width:16px;
 				height:16px;
@@ -374,7 +376,7 @@
             margin-bottom: 10px;
 			overflow:hidden;
 			min-height:18px;
-			color:stencilColor('color-textBase') + #494949;
+			color:color.adjust(stencilColor('color-textBase'), $red: 73, $green: 73, $blue: 73);
         }
 		@media (max-width: 480px) {
 			text-align:left;

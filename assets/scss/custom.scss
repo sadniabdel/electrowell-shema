@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Custom Styles */
 body{	
     font-family: $fontFamily-sans;
@@ -394,7 +396,7 @@ a:hover, a:active, a:focus{
 			background: stencilColor('button--primary-backgroundColor'); 
 			border: 1px solid transparent;
 			.countPill{
-				background: stencilColor('button--primary-backgroundColor') + #161616;	
+				background: color.adjust(stencilColor('button--primary-backgroundColor'), $red: 22, $green: 22, $blue: 22);	
 			}
 		}
 	}
@@ -407,14 +409,14 @@ a:hover, a:active, a:focus{
 			padding:10px 15px 9px;
 			line-height:1.25;
 			margin-left:20px;
-			background: stencilColor('button--primary-backgroundColorHover') + #161616;		
+			background: color.adjust(stencilColor('button--primary-backgroundColorHover'), $red: 22, $green: 22, $blue: 22);		
 			border: 1px solid transparent;
 		}	
 	}
 }
 .form-increment .button{
 	vertical-align:top;
-	color:stencilColor('input-font-color') - #454545;
+	color:color.adjust(stencilColor('input-font-color'), $red: -69, $green: -69, $blue: -69);
 	border-color:stencilColor('input-border-color');
 	font-size:12px;
 	height:36px;
@@ -444,7 +446,7 @@ a:hover, a:active, a:focus{
 	.navBar-section{
 		position:relative;
 		overflow:hidden;		
-		background: stencilColor('color-background-body') - #090806;
+		background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
 		border-radius:4px;
 		-moz-border-radius:4px;
 		padding:5px;
@@ -603,7 +605,7 @@ ul.all-categories-list{
 								font-family:$fontFamily-page;
 								font-size: 12px;
 								font-weight: 700;
-								color:stencilColor('color-textBase') - #323232;
+								color:color.adjust(stencilColor('color-textBase'), $red: -50, $green: -50, $blue: -50);
 								&:hover{
 									color: stencilColor('color-textLink--hover');
 								}
@@ -633,7 +635,7 @@ ul.all-categories-list{
 				& > ul{
 					& > li{
 						& > a{
-							color:stencilColor('color-textBase') - #323232;
+							color:color.adjust(stencilColor('color-textBase'), $red: -50, $green: -50, $blue: -50);
 							font-weight:400;
 							&:hover{
 								color: stencilColor('color-textLink--hover');
@@ -655,7 +657,7 @@ ul.all-categories-list{
 	h3{
 		font-size:16px;
 		font-weight: 600;
-		border-bottom:1px solid (stencilColor('color-border-page') + #131313);
+		border-bottom:1px solid (color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19));
 		margin:20px 0 30px;
 		padding:0 0 10px;
 	}
@@ -664,7 +666,7 @@ ul.all-categories-list{
 	& > h2{
 		font-size:16px;
 		font-weight:600;
-		border-bottom:1px solid (stencilColor('color-border-page') + #131313);
+		border-bottom:1px solid (color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19));
 		margin:10px 0 15px;
 		padding:0 0 10px;
 		
@@ -678,7 +680,7 @@ ul.all-categories-list{
 	}
 }
 .custom-product-advice{
-	border-top:1px dotted (stencilColor('color-border-page') + #090808);	
+	border-top:1px dotted (color.adjust(stencilColor('color-border-page'), $red: 9, $green: 8, $blue: 8));	
 	margin-top:20px;
 	padding-top:20px;
 	overflow:hidden;

@@ -1,9 +1,11 @@
+@use "sass:color";
+
 // =============================================================================
 // FOOTER (CSS)
 // =============================================================================
 #footer-wrapper {
     background: stencilColor('footer-backgroundColor');
-	border-top:1px solid stencilColor('footer-backgroundColor') - #151515;
+	border-top:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
 	.footerInfo{
 		background:stencilColor('footer-infor-bgColor');
 		text-align:center;
@@ -12,7 +14,7 @@
 		font-family: $fontFamily-page;
 		font-weight:400;
 		font-size: 14px;
-		border-bottom:1px solid stencilColor('footer-backgroundColor') - #151515;
+		border-bottom:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
 		p{
 			margin:0;
 			@media(max-width:600px){
@@ -44,24 +46,24 @@
 		}
 	}
 	.middle-footer{
-		border-bottom:1px solid stencilColor('footer-backgroundColor') - #151515;
+		border-bottom:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
 		overflow:hidden;
 		text-align:center;
 		@media(min-width:992px){
 			& > .container{
-				/*border-left:1px solid stencilColor('footer-backgroundColor') - #151515;*/
-				/*border-right:1px solid stencilColor('footer-backgroundColor') - #151515;*/
+				/*border-left:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);*/
+				/*border-right:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);*/
 			}
 		}
 		[class*='col-sm']{
 			padding:30px 20px;
-			border-right:1px solid stencilColor('footer-backgroundColor') - #151515;
+			border-right:1px solid color.adjust(stencilColor('footer-backgroundColor'), $red: -21, $green: -21, $blue: -21);
 			color:stencilColor('footer-column-text-color');
 			&:last-child{
 				border:none;
 			}
 			p.fa-icon{
-				color:stencilColor('footer-column-text-color') + #151515;
+				color:color.adjust(stencilColor('footer-column-text-color'), $red: 21, $green: 21, $blue: 21);
 				.fa{
 					font-size:42px;
 				}
@@ -71,7 +73,7 @@
 				padding:0;
 				font-size:18px;
 				font-weight:400;
-				color: stencilColor('footer-column-heading-color') + #141414;
+				color: color.adjust(stencilColor('footer-column-heading-color'), $red: 20, $green: 20, $blue: 20);
 			}
 			p.text{
 				margin:0;
@@ -254,7 +256,7 @@
 					margin-right:5px;
 					font-family:"FontAwesome";
 					content: "\f054";
-					color: stencilColor('footer-column-text-color') + #7c7c7c;
+					color: color.adjust(stencilColor('footer-column-text-color'), $red: 124, $green: 124, $blue: 124);
 					font-size: 10px;
 					font-weight: 400;
 				}

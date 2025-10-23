@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // PRODUCT LIST (CSS)
 // =============================================================================
@@ -230,7 +232,7 @@
                 display: inline-block!important;
                 font-weight: 700;
                 text-transform: capitalize;
-                color:stencilColor('color-textBase') - #1e1e1e;
+                color:color.adjust(stencilColor('color-textBase'), $red: -30, $green: -30, $blue: -30);
                 font-size: 12px;
 				float:left;
 				margin-left:30px;

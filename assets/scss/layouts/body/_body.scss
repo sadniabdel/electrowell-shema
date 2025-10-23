@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // BODY (CSS)
 //
@@ -251,7 +253,7 @@ nav#mobile-customer ul li .not-logged {
 nav#mobile-customer ul li .not-logged a {
     display: block;
 	& + a{
-		border-top:1px solid stencilColor('color-border-page') + #131313;
+		border-top:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 	}
 }
 
@@ -299,7 +301,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 .st-menu {
 	ul {
 		li {
-			border-bottom:1px solid stencilColor('color-border-page') + #131313;
+			border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 			a {
 				font-family: $fontFamily-headings;
 				font-size: 14px;
@@ -308,7 +310,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				padding: 13px 20px 12px;
 				letter-spacing: 0;
 				text-transform: capitalize;				
-				color:stencilColor('color-textBase') - #323232;
+				color:color.adjust(stencilColor('color-textBase'), $red: -50, $green: -50, $blue: -50);
 				outline: none;
 				&:hover{
 					color: stencilColor('color-textLink--hover');
@@ -355,7 +357,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				}
 			}
 			&#currency-converter{
-				border-top:1px solid stencilColor('color-border-page') + #131313;
+				border-top:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 				margin-top:15px;
 				position:relative;
 				& > label{
@@ -461,7 +463,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 .st-menu ul li .navPage-subMenu,
 .st-menu ul li .subMegaMenu {
     display: none;
-	border-top:1px solid stencilColor('color-border-page') + #131313;
+	border-top:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
     & .container {
         width: 100%;
     }
@@ -566,7 +568,7 @@ nav#mobile-customer ul li .not-logged a:hover {
     width: 100% !important;
     overflow: hidden;
 	border:none;
-	border-top:1px solid stencilColor('color-border-page') + #131313;
+	border-top:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 }
 
 #mobile-categories .subMegaMenu > div,
@@ -598,7 +600,7 @@ nav#mobile-customer ul li .not-logged a:hover {
 				padding: 13px 20px 5px;
 				letter-spacing: 0;
 				text-transform: capitalize;
-				color:stencilColor('color-textBase') - #323232;
+				color:color.adjust(stencilColor('color-textBase'), $red: -50, $green: -50, $blue: -50);
 			}
 			& > a{
 				font-weight:400;

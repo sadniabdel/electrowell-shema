@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // BLOG
 // =============================================================================
@@ -13,7 +15,7 @@
         width: 100%;
     }
     + .blog {
-        border-top: 1px solid stencilColor('color-border-page') + #131313;
+        border-top: 1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
         margin-top: 35px;
         padding-top: 25px;
     }
@@ -43,7 +45,7 @@
     font-weight: 700;
     a {
         text-decoration: none;
-		color:stencilColor('color-textBase') - #505050;
+		color:color.adjust(stencilColor('color-textBase'), $red: -80, $green: -80, $blue: -80);
     }
 }
 

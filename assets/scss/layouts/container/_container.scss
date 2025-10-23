@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -134,7 +136,7 @@
 				font-size:fontSize('large');
 				font-family:$fontFamily-headings;
 				text-transform: uppercase; 
-				color: (stencilColor('color-textHeading') + #7b7b7b); 
+				color: (color.adjust(stencilColor('color-textHeading'), $red: 123, $green: 123, $blue: 123)); 
 				padding: 23px 0; margin-right: 35px; 
 			}
 			&.active{
@@ -165,7 +167,7 @@
 	margin:15px 0 10px;
     & .breadcrumb {
         display: inline-block;
-        color: ( stencilColor('color-textBase') + #464646 );
+        color: ( color.adjust(stencilColor('color-textBase'), $red: 70, $green: 70, $blue: 70) );
         padding-right: 13px;
 		text-transform:capitalize;
 		font-size:12px;
@@ -177,7 +179,7 @@
             position: relative;
             margin: 0 9px 0 0px;
 			top:0;
-			color: ( stencilColor('color-textBase') + #464646 );
+			color: ( color.adjust(stencilColor('color-textBase'), $red: 70, $green: 70, $blue: 70) );
         }
         &:first-child::before {
             display: none;
@@ -187,7 +189,7 @@
         }
 		a, span,
 		&.is-active span{
-			color: ( stencilColor('color-textBase') + #464646 );
+			color: ( color.adjust(stencilColor('color-textBase'), $red: 70, $green: 70, $blue: 70) );
 		}
 		@media (max-width:767px){
 			margin-bottom:3px;
@@ -203,10 +205,10 @@
     text-transform: capitalize;
     text-align: left;
     padding: 0;
-	color:stencilColor('color-textHeading') - #323232;
+	color:color.adjust(stencilColor('color-textHeading'), $red: -50, $green: -50, $blue: -50);
 }
 .page-heading.hl-heading-line{
-	border-bottom:1px solid stencilColor('color-border-page') + #131313;
+	border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 	padding-bottom:20px;
 	margin-bottom:30px;
 }
@@ -247,7 +249,7 @@ main > .page-heading{
 	&.top{
 		background:#f6f7f9;
 		padding:10px 10px 5px;
-		border-bottom:1px solid stencilColor('color-border-page') + #090808;
+		border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 9, $green: 8, $blue: 8);
 		.compare-link{
 			display:none;
 		}
@@ -288,7 +290,7 @@ main > .page-heading{
 			min-width:35px;
 			padding:10px 12px 8px;
 			height:auto;
-			border:1px solid stencilColor('color-border-page') - #0d0d0d;
+			border:1px solid color.adjust(stencilColor('color-border-page'), $red: -13, $green: -13, $blue: -13);
 			line-height:1.25;
 			border-radius:3px;
 			-moz-border-radius:3px;
@@ -312,7 +314,7 @@ main > .page-heading{
 					min-width:35px;
 					padding:10px 12px 8px;
 					height:auto;
-					border:1px solid stencilColor('color-border-page') - #0d0d0d;
+					border:1px solid color.adjust(stencilColor('color-border-page'), $red: -13, $green: -13, $blue: -13);
 					line-height:1.25;
 					border-radius:3px;
 					-moz-border-radius:3px;
@@ -378,7 +380,7 @@ main > .page-heading{
 		.btn-group{
 			display:inline-block;
 			vertical-align:middle;
-			border:1px solid stencilColor('color-border-page') - #0d0d0d;
+			border:1px solid color.adjust(stencilColor('color-border-page'), $red: -13, $green: -13, $blue: -13);
 			border-radius: 3px;
 			-webkit-border-radius: 3px;
 			-moz-border-radius: 3px;
@@ -394,7 +396,7 @@ main > .page-heading{
 				display: table;
 				vertical-align: middle;
 				float:left;
-				color:stencilColor('form-label-font-color') + #646464;
+				color:color.adjust(stencilColor('form-label-font-color'), $red: 100, $green: 100, $blue: 100);
 				& > div{
 					display:table-cell;
 					vertical-align:middle;
@@ -414,10 +416,10 @@ main > .page-heading{
 					height: 4px;
 					margin: 1px auto 0 auto;
 					transition: all .15s ease;
-					background: stencilColor('form-label-font-color') + #646464;
+					background: color.adjust(stencilColor('form-label-font-color'), $red: 100, $green: 100, $blue: 100);
 				}
 				&#grid-view {
-					border-right:1px solid stencilColor('color-border-page') - #0d0d0d;
+					border-right:1px solid color.adjust(stencilColor('color-border-page'), $red: -13, $green: -13, $blue: -13);
 					.icon-bar {
 						width: 4px;
 						&:before,
@@ -428,7 +430,7 @@ main > .page-heading{
 							height: 4px;
 							content: '';
 							transition: all .15s ease;
-							background: stencilColor('form-label-font-color') + #646464;					
+							background: color.adjust(stencilColor('form-label-font-color'), $red: 100, $green: 100, $blue: 100);					
 						}
 						&:before {
 							left: -5px;
@@ -1298,7 +1300,7 @@ body.is-sticky {
 .halo-best-selling-promotion{
 	overflow:hidden;
 	clear:both;
-	border-bottom:1px solid stencilColor('color-border-page') + #0F0F0F;
+	border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 	-moz-box-shadow: 0 0 5px #f8f8f8;
 	box-shadow: 0 0 5px #f8f8f8;
 	padding:12px 0 0;
@@ -1320,7 +1322,7 @@ body.is-sticky {
 					a{
 						padding-left:10px;
 						margin-left:10px;
-						border-left:1px solid stencilColor('color-border-page') + #0F0F0F;
+						border-left:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 					}
 				}
 				ul{
@@ -1356,7 +1358,7 @@ body.is-sticky {
 			a{
 				padding-right:10px;
 				margin-right:10px;
-				border-right:1px solid stencilColor('color-border-page') + #0F0F0F;
+				border-right:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 				position:relative;
 				&:after{
 					display:block;
@@ -1439,7 +1441,7 @@ body.is-sticky {
 				display:block;
 				font-size:20px;
 				line-height:18px;
-				color:stencilColor('color-textHeading') + #6c6c6c;
+				color:color.adjust(stencilColor('color-textHeading'), $red: 108, $green: 108, $blue: 108);
 			}
 		}
 		h4{
@@ -1608,7 +1610,7 @@ body.is-sticky {
 					margin-bottom:7px;
 					display:block;
 					float:none;
-					color:stencilColor('color-textBase') + #494949;
+					color:color.adjust(stencilColor('color-textBase'), $red: 73, $green: 73, $blue: 73);
 				}
 				.price-section{
 					> span{
@@ -1849,7 +1851,7 @@ body.is-sticky {
 							-moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.08);
 							border-radius: 3px;
 							-moz-border-radius: 3px;
-							border:1px solid stencilColor('color-border-page') + #020202;
+							border:1px solid color.adjust(stencilColor('color-border-page'), $red: 2, $green: 2, $blue: 2);
 							background:#fff;
 						&.owl-prev{
 							left:0;
@@ -1964,7 +1966,7 @@ body.is-sticky {
 			overflow:hidden;
 			margin:0 20px;
 			padding:7px 0;
-			border-top:1px dotted stencilColor('color-border-page') + #0f0f0f;
+			border-top:1px dotted color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 			position:relative;
 			height:39px;
 			.hl-label{
@@ -1989,7 +1991,7 @@ body.is-sticky {
 					a{
 						padding-right:10px;
 						margin-right:10px;
-						border-right:1px solid stencilColor('color-border-page') + #0F0F0F;
+						border-right:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 						position:relative;
 						&:after{
 							display:block;
@@ -2047,7 +2049,7 @@ body.is-sticky {
 						a{
 							padding-left:10px;
 							margin-left:10px;
-							border-left:1px solid stencilColor('color-border-page') + #0F0F0F;
+							border-left:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 						}
 					}
 					ul{
@@ -2080,7 +2082,7 @@ body.is-sticky {
 					top:50%;
 					border-radius: 3px;
 					-moz-border-radius: 3px;
-					border:1px solid stencilColor('color-border-page') + #020202;
+					border:1px solid color.adjust(stencilColor('color-border-page'), $red: 2, $green: 2, $blue: 2);
 					background:#fff;
 					height:30px;
 					opacity:0;
@@ -2140,7 +2142,7 @@ body.is-sticky {
 			}
 		}
 		.cat-brand{
-			border:1px solid stencilColor('color-border-page') + #0F0F0F;
+			border:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 			overflow:hidden;
 			display:block;
 			position:relative;
@@ -2153,7 +2155,7 @@ body.is-sticky {
 				border:none;
 				width:33.33333%;
 				float:left;
-				border-right:1px solid stencilColor('color-border-page') + #0F0F0F;
+				border-right:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 				position:relative;
 				&:nth-child(3n){
 					border-right:none;
@@ -2178,7 +2180,7 @@ body.is-sticky {
 				}
 				&:hover{
 					&:before{
-						border-color:stencilColor('color-border-page') - #232323;
+						border-color:color.adjust(stencilColor('color-border-page'), $red: -35, $green: -35, $blue: -35);
 						box-shadow:1px 0 4px rgba(0,0,0,0.08);
 					}
 				}
@@ -2188,7 +2190,7 @@ body.is-sticky {
 				top:50%;
 				left:0;
 				right:0;
-				background:stencilColor('color-border-page') + #0F0F0F;
+				background:color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 				height:1px;
 				display:block;
 				content:"";
@@ -2212,7 +2214,7 @@ body.is-sticky {
 					font-weight:400;
 					border:none!important;
 					background:none!important;
-					color:stencilColor('color-textHeading') + #999;
+					color:color.adjust(stencilColor('color-textHeading'), $red: 153, $green: 153, $blue: 153);
 					line-height:1.25;
 				}
 				&:hover,

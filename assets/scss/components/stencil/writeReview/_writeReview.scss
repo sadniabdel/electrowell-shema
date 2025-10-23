@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // WRITE A REVIEW (CSS)
 // =============================================================================
@@ -9,7 +11,7 @@
         margin-bottom: 30px;
     }
     .product-brand {
-        color:stencilColor('color-textBase') + #494949;
+        color:color.adjust(stencilColor('color-textBase'), $red: 73, $green: 73, $blue: 73);
         margin: 0 0 6px;
 		font-weight:400;
     }

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .navPages-container {
 	min-height:36px;
 	position:relative;
@@ -104,7 +106,7 @@
 			}
 			& > .cateArea-content{
 				overflow:hidden;
-				color: ( stencilColor('mainNav-dropdown-text-color') + #505050 );
+				color: ( color.adjust(stencilColor('mainNav-dropdown-text-color'), $red: 80, $green: 80, $blue: 80) );
 				text-align:left;
 				font-weight:500;
 				font-family: $fontFamily-sans;
@@ -147,7 +149,7 @@
 						position: relative;
 						display:block;
 						padding: 9px 15px;
-						color: ( stencilColor('mainNav-dropdown-text-color') + #1d1d1d );
+						color: ( color.adjust(stencilColor('mainNav-dropdown-text-color'), $red: 29, $green: 29, $blue: 29) );
 						font-weight:400;
 						font-family: $fontFamily-sans;
 						font-size: fontSize("base");
@@ -459,7 +461,7 @@
 
 .navPages-container li.hasMegamenu > .subMegaMenu .cateArea ul li a {
     position: relative;
-    color: ( stencilColor('mainNav-dropdown-text-color') + #1d1d1d );
+    color: ( color.adjust(stencilColor('mainNav-dropdown-text-color'), $red: 29, $green: 29, $blue: 29) );
 	border:none;
 	&:hover{
 		color:stencilColor('mainNav-dropdown-text-color-hover');

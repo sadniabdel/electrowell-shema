@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================================================
 // Stencil Checkout - Customize the Optimized Single-Page Checkout experience
 // =============================================================================
@@ -82,7 +84,7 @@
 				margin:0 0 30px;
 				padding:0 0 10px;
 				border:none;
-				border-bottom:1px solid stencilColor('color-border-page') + #131313;
+				border-bottom:1px solid color.adjust(stencilColor('color-border-page'), $red: 19, $green: 19, $blue: 19);
 				&:last-child{
 					border:none;
 					margin-bottom:0;
@@ -96,7 +98,7 @@
 						width: 36px;
 						height: 36px;
 						background:none;
-						border:1px solid stencilColor('color-border-page') - #232323;
+						border:1px solid color.adjust(stencilColor('color-border-page'), $red: -35, $green: -35, $blue: -35);
 						svg {
 							display: none;
 							fill: #4c9e4c;
@@ -238,7 +240,7 @@
 				display:none;
 			}
 			.cart-header{
-				background: stencilColor('color-background-body') - #090806;
+				background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
 				padding: 15px 30px;
 				display: block;
 				.optimizedCheckout-headingSecondary{
@@ -303,7 +305,7 @@
 }
 cart-prices{
 	.cart-section{
-		border-top:1px solid stencilColor('color-border-page') + #0F0F0F;
+		border-top:1px solid color.adjust(stencilColor('color-border-page'), $red: 15, $green: 15, $blue: 15);
 	}
 }
 .cart-section{
@@ -387,7 +389,7 @@ cart-prices{
 	font-size:12px;
 }
 .cart-modal-header.optimizedCheckout-orderSummary{
-	background: stencilColor('color-background-body') - #090806;
+	background: color.adjust(stencilColor('color-background-body'), $red: -9, $green: -8, $blue: -6);
 	padding: 12px 30px;
 	border-radius:4px 4px 0 0;
 }
