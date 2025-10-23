@@ -755,6 +755,25 @@ ul.all-categories-list{
 		text-align: center;
 		white-space: nowrap;
 	}
+
+	// Disabled button style (for zero price products)
+	.btn-disabled,
+	.btn-add-to-cart:disabled {
+		background-color: #999 !important;
+		border-color: #999 !important;
+		color: #fff !important;
+		cursor: not-allowed !important;
+		opacity: 0.6;
+		pointer-events: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: #999 !important;
+			border-color: #999 !important;
+			color: #fff !important;
+		}
+	}
 }
 
 /* Request Quote Modal Styles */

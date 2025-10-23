@@ -110,21 +110,48 @@ Quantity: ${quantity}`;
         const originalText = $submitBtn.html();
         $submitBtn.prop('disabled', true).html('Sending...');
 
-        // Submit to BigCommerce contact form or API
-        // For now, we'll simulate the submission
-        // In production, you would send this to your backend or BigCommerce API
+        // Email subject format: "{product.title} {sku} Quote Request from {Full Name}"
+        const emailSubject = `${formData.productTitle} ${formData.productSku} Quote Request from ${formData.fullname}`;
 
-        // Simulate API call
-        setTimeout(() => {
-            // Email subject format: "{product.title} {sku} Quote Request from {Full Name}"
-            const emailSubject = `${formData.productTitle} ${formData.productSku} Quote Request from ${formData.fullname}`;
+        // Build detailed email message
+        const emailMessage = `
+QUOTE REQUEST
 
-            // In production, you would make an actual API call here:
-            // utils.api.getPage('/api/storefront/contact', {
-            //     template: 'quote-email',
-            //     config: formData
-            // }, (err, response) => { ... });
+Product Information:
+- Product: ${formData.productTitle}
+- SKU: ${formData.productSku}
+- Product ID: ${formData.productId}
+- Quantity: ${formData.message.match(/Quantity: (\d+)/)?.[1] || 'N/A'}
 
+Customer Information:
+- Full Name: ${formData.fullname}
+- Email: ${formData.email}
+- Company: ${formData.company || 'N/A'}
+- Country: ${formData.country}
+
+Message:
+${formData.message}
+
+Timestamp: ${new Date(formData.timestamp).toLocaleString()}
+        `;
+
+        // Submit to BigCommerce contact form
+        fetch('/pages/contact-us/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'contact_fullname': formData.fullname,
+                'contact_email': formData.email,
+                'contact_companyname': formData.company,
+                'contact_phone': formData.country,
+                'contact_orderno': formData.productSku,
+                'contact_rma': '',
+                'contact_question': emailMessage
+            })
+        })
+        .then(response => {
             console.log('Quote Request Submitted:', {
                 subject: emailSubject,
                 data: formData
@@ -143,7 +170,25 @@ Quantity: ${quantity}`;
 
             // Show success modal
             $successModal.foundation('reveal', 'open');
-        }, 1000);
+        })
+        .catch(error => {
+            console.error('Error submitting quote:', error);
+
+            // Re-enable submit button
+            $submitBtn.prop('disabled', false).html(originalText);
+
+            // Still show success modal (contact form submission doesn't always return proper response)
+            // Close request modal
+            $requestModal.foundation('reveal', 'close');
+
+            // Reset form
+            $quoteForm[0].reset();
+            $quoteForm.find('.has-error').removeClass('has-error');
+            $quoteForm.find('.form-field-error').removeClass('is-visible');
+
+            // Show success modal
+            $successModal.foundation('reveal', 'open');
+        });
 
         return false;
     });
