@@ -384,7 +384,14 @@
                             </div>
                             <p class="alertBox-column alertBox-message"></p>
                         </div>
-                        <button id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="btn btn-primary" type="submit">{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}</button>
+
+                        {{!-- Button Group: Add to Cart and Get Quote side-by-side --}}
+                        <div class="product-actions-group">
+                            <button id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="btn btn-primary btn-add-to-cart" type="submit">{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}} <i class="fa fa-chevron-right"></i>{{/if}}</button>
+                            <button class="btn btn-primary btn-get-quote" type="button" data-reveal-id="modal-request-quote">
+                                Get Quote <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
 
                         {{{snippet 'product_addtocart'}}}
                     {{/if}}
@@ -397,10 +404,6 @@
                     {{/if}}
 
                 </form>
-                {{!-- Request Quote Button (replaces Add to Wishlist) --}}
-                <button class="btn btn-primary btn-request-quote" type="button" data-reveal-id="modal-request-quote">
-                    Request a Quote <i class="fa fa-chevron-right"></i>
-                </button>
             </div>
 
             {{>components/common/share}}
@@ -493,70 +496,169 @@
         <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
     </div>
     <div class="modal-body">
-        <form class="form" id="request-quote-form" method="post" action="/pages/contact-us/" data-request-quote-form>
+        <form class="form quote-form" id="request-quote-form" method="post" action="#" data-request-quote-form
+              data-product-title="{{product.title}}"
+              data-product-sku="{{product.sku}}"
+              data-product-id="{{product.id}}">
             <fieldset class="form-fieldset">
-                <div class="form-field">
-                    <label class="form-label" for="quote-fullname">
-                        Full Name <small>Required</small>
-                    </label>
-                    <input type="text" class="form-input" id="quote-fullname" name="fullname" required>
+                {{!-- Name and Email Row --}}
+                <div class="form-row">
+                    <div class="form-field form-field--half">
+                        <label class="form-label" for="quote-fullname">
+                            Full Name <small>*</small>
+                        </label>
+                        <input type="text" class="form-input" id="quote-fullname" name="fullname" required minlength="2" data-error-message="Full name is required (min 2 characters)">
+                        <span class="form-field-error"></span>
+                    </div>
+
+                    <div class="form-field form-field--half">
+                        <label class="form-label" for="quote-email">
+                            Email <small>*</small>
+                        </label>
+                        <input type="email" class="form-input" id="quote-email" name="email" required data-error-message="Valid email is required">
+                        <span class="form-field-error"></span>
+                    </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-label" for="quote-email">
-                        Email <small>Required</small>
-                    </label>
-                    <input type="email" class="form-input" id="quote-email" name="email" required>
+                {{!-- Company and Country Row --}}
+                <div class="form-row">
+                    <div class="form-field form-field--half">
+                        <label class="form-label" for="quote-company">
+                            Company
+                        </label>
+                        <input type="text" class="form-input" id="quote-company" name="company">
+                    </div>
+
+                    <div class="form-field form-field--half">
+                        <label class="form-label" for="quote-country">
+                            Country <small>*</small>
+                        </label>
+                        <select class="form-select" id="quote-country" name="country" required data-error-message="Country is required">
+                            <option value="">Select country</option>
+                            <option value="AF">Afghanistan</option>
+                            <option value="AL">Albania</option>
+                            <option value="DZ">Algeria</option>
+                            <option value="AR">Argentina</option>
+                            <option value="AM">Armenia</option>
+                            <option value="AU">Australia</option>
+                            <option value="AT">Austria</option>
+                            <option value="AZ">Azerbaijan</option>
+                            <option value="BH">Bahrain</option>
+                            <option value="BD">Bangladesh</option>
+                            <option value="BY">Belarus</option>
+                            <option value="BE">Belgium</option>
+                            <option value="BO">Bolivia</option>
+                            <option value="BA">Bosnia and Herzegovina</option>
+                            <option value="BR">Brazil</option>
+                            <option value="BG">Bulgaria</option>
+                            <option value="CA">Canada</option>
+                            <option value="CL">Chile</option>
+                            <option value="CN">China</option>
+                            <option value="CO">Colombia</option>
+                            <option value="CR">Costa Rica</option>
+                            <option value="HR">Croatia</option>
+                            <option value="CY">Cyprus</option>
+                            <option value="CZ">Czech Republic</option>
+                            <option value="DK">Denmark</option>
+                            <option value="EC">Ecuador</option>
+                            <option value="EG">Egypt</option>
+                            <option value="EE">Estonia</option>
+                            <option value="FI">Finland</option>
+                            <option value="FR">France</option>
+                            <option value="GE">Georgia</option>
+                            <option value="DE">Germany</option>
+                            <option value="GR">Greece</option>
+                            <option value="HK">Hong Kong</option>
+                            <option value="HU">Hungary</option>
+                            <option value="IS">Iceland</option>
+                            <option value="IN">India</option>
+                            <option value="ID">Indonesia</option>
+                            <option value="IR">Iran</option>
+                            <option value="IQ">Iraq</option>
+                            <option value="IE">Ireland</option>
+                            <option value="IL">Israel</option>
+                            <option value="IT">Italy</option>
+                            <option value="JP">Japan</option>
+                            <option value="JO">Jordan</option>
+                            <option value="KZ">Kazakhstan</option>
+                            <option value="KW">Kuwait</option>
+                            <option value="LV">Latvia</option>
+                            <option value="LB">Lebanon</option>
+                            <option value="LT">Lithuania</option>
+                            <option value="LU">Luxembourg</option>
+                            <option value="MY">Malaysia</option>
+                            <option value="MX">Mexico</option>
+                            <option value="MD">Moldova</option>
+                            <option value="MA">Morocco</option>
+                            <option value="NL">Netherlands</option>
+                            <option value="NZ">New Zealand</option>
+                            <option value="NG">Nigeria</option>
+                            <option value="NO">Norway</option>
+                            <option value="OM">Oman</option>
+                            <option value="PK">Pakistan</option>
+                            <option value="PE">Peru</option>
+                            <option value="PH">Philippines</option>
+                            <option value="PL">Poland</option>
+                            <option value="PT">Portugal</option>
+                            <option value="QA">Qatar</option>
+                            <option value="RO">Romania</option>
+                            <option value="RU">Russia</option>
+                            <option value="SA">Saudi Arabia</option>
+                            <option value="RS">Serbia</option>
+                            <option value="SG">Singapore</option>
+                            <option value="SK">Slovakia</option>
+                            <option value="SI">Slovenia</option>
+                            <option value="ZA">South Africa</option>
+                            <option value="KR">South Korea</option>
+                            <option value="ES">Spain</option>
+                            <option value="SE">Sweden</option>
+                            <option value="CH">Switzerland</option>
+                            <option value="TW">Taiwan</option>
+                            <option value="TH">Thailand</option>
+                            <option value="TR">Turkey</option>
+                            <option value="UA">Ukraine</option>
+                            <option value="AE">United Arab Emirates</option>
+                            <option value="GB">United Kingdom</option>
+                            <option value="US">United States</option>
+                            <option value="UY">Uruguay</option>
+                            <option value="VE">Venezuela</option>
+                            <option value="VN">Vietnam</option>
+                        </select>
+                        <span class="form-field-error"></span>
+                    </div>
                 </div>
 
-                <div class="form-field">
-                    <label class="form-label" for="quote-company">
-                        Company <small>Optional</small>
-                    </label>
-                    <input type="text" class="form-input" id="quote-company" name="company">
-                </div>
-
-                <div class="form-field">
-                    <label class="form-label" for="quote-country">
-                        Country <small>Optional</small>
-                    </label>
-                    <select class="form-select" id="quote-country" name="country">
-                        <option value="">Select Country</option>
-                        <option value="DE">Germany</option>
-                        <option value="GB">United Kingdom</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="IT">Italy</option>
-                        <option value="ES">Spain</option>
-                        <option value="NL">Netherlands</option>
-                        <option value="BE">Belgium</option>
-                        <option value="AT">Austria</option>
-                        <option value="CH">Switzerland</option>
-                        <option value="PL">Poland</option>
-                        <option value="SE">Sweden</option>
-                        <option value="DK">Denmark</option>
-                        <option value="NO">Norway</option>
-                        <option value="FI">Finland</option>
-                        <option value="OTHER">Other</option>
-                    </select>
-                </div>
-
+                {{!-- Message Field --}}
                 <div class="form-field">
                     <label class="form-label" for="quote-message">
-                        Message <small>Required</small>
+                        Message <small>*</small>
                     </label>
-                    <textarea class="form-input" id="quote-message" name="message" rows="6" required
-                        data-product-title="{{product.title}}"
-                        data-product-sku="{{product.sku}}"></textarea>
+                    <textarea class="form-input" id="quote-message" name="message" rows="6" required data-error-message="Message is required"></textarea>
+                    <span class="form-field-error"></span>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">
-                        Submit Inquiry <i class="fa fa-chevron-right"></i>
+                    <button type="submit" class="btn btn-primary btn-submit-quote">
+                        Submit Request <i class="fa fa-chevron-right"></i>
                     </button>
                 </div>
             </fieldset>
         </form>
+    </div>
+</div>
+
+{{!-- Success Modal --}}
+<div id="modal-quote-success" class="modal modal--small" data-reveal>
+    <div class="modal-header">
+        <a href="#" class="modal-close" aria-label="Close"><span aria-hidden="true">&#215;</span></a>
+    </div>
+    <div class="modal-body modal-body--centered">
+        <svg class="icon-success" width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="11" stroke="#4CAF50" stroke-width="2" fill="none"/>
+            <path d="M7 12l3 3 7-7" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="success-title">Thanks, your quote request was sent.</h3>
+        <p class="success-message">We will contact you by email.</p>
+        <button type="button" class="btn btn-primary" data-close-success-modal>Close</button>
     </div>
 </div>

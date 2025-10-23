@@ -1,13 +1,71 @@
 import $ from 'jquery';
+import utils from '@bigcommerce/stencil-utils';
 
 export default function() {
-    const $requestQuoteBtn = $('[data-reveal-id="modal-request-quote"]');
-    const $messageTextarea = $('#quote-message');
+    const $requestQuoteBtn = $('.btn-get-quote');
+    const $quoteForm = $('#request-quote-form');
+    const $requestModal = $('#modal-request-quote');
+    const $successModal = $('#modal-quote-success');
 
-    // When Request Quote button is clicked, pre-fill the message
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validation function
+    function validateField($field) {
+        const $errorSpan = $field.closest('.form-field').find('.form-field-error');
+        const value = $field.val().trim();
+        const fieldType = $field.attr('type');
+        const fieldName = $field.attr('name');
+        let isValid = true;
+        let errorMessage = '';
+
+        // Clear previous error
+        $field.removeClass('has-error');
+        $errorSpan.removeClass('is-visible').text('');
+
+        // Validation rules
+        if ($field.prop('required') && !value) {
+            isValid = false;
+            errorMessage = $field.data('error-message') || 'This field is required';
+        } else if (fieldName === 'fullname' && value && value.length < 2) {
+            isValid = false;
+            errorMessage = 'Full name must be at least 2 characters';
+        } else if (fieldType === 'email' && value && !emailRegex.test(value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address';
+        } else if (fieldName === 'country' && $field.prop('required') && !value) {
+            isValid = false;
+            errorMessage = 'Country is required';
+        }
+
+        // Show error if invalid
+        if (!isValid) {
+            $field.addClass('has-error');
+            $errorSpan.text(errorMessage).addClass('is-visible');
+        }
+
+        return isValid;
+    }
+
+    // Validate all required fields
+    function validateForm() {
+        let isValid = true;
+        const $requiredFields = $quoteForm.find('[required]');
+
+        $requiredFields.each(function() {
+            if (!validateField($(this))) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+    // Pre-fill message when modal opens
     $requestQuoteBtn.on('click', function() {
-        const productTitle = $messageTextarea.data('product-title');
-        const productSku = $messageTextarea.data('product-sku');
+        const $form = $quoteForm;
+        const productTitle = $form.data('product-title');
+        const productSku = $form.data('product-sku');
         const quantity = $('input[name="qty[]"]').val() || '1';
 
         // Build the pre-filled message
@@ -17,29 +75,86 @@ Product: ${productTitle}${productSku ? ' (SKU: ' + productSku + ')' : ''}
 Quantity: ${quantity}`;
 
         // Set the message in the textarea
-        $messageTextarea.val(message);
+        $('#quote-message').val(message);
+    });
+
+    // Real-time validation on blur
+    $quoteForm.on('blur', '.form-input, .form-select', function() {
+        validateField($(this));
     });
 
     // Handle form submission
-    $('#request-quote-form').on('submit', function(e) {
+    $quoteForm.on('submit', function(e) {
         e.preventDefault();
 
+        // Validate form
+        if (!validateForm()) {
+            return false;
+        }
+
+        // Collect form data
         const formData = {
-            fullname: $('#quote-fullname').val(),
-            email: $('#quote-email').val(),
-            company: $('#quote-company').val(),
+            fullname: $('#quote-fullname').val().trim(),
+            email: $('#quote-email').val().trim(),
+            company: $('#quote-company').val().trim(),
             country: $('#quote-country').val(),
-            message: $('#quote-message').val()
+            message: $('#quote-message').val().trim(),
+            productTitle: $quoteForm.data('product-title'),
+            productSku: $quoteForm.data('product-sku'),
+            productId: $quoteForm.data('product-id'),
+            timestamp: new Date().toISOString()
         };
 
-        // You can implement your own submission logic here
-        // For now, we'll just show a success alert
-        alert('Thank you for your quote request! We will contact you shortly.');
+        // Disable submit button
+        const $submitBtn = $quoteForm.find('.btn-submit-quote');
+        const originalText = $submitBtn.html();
+        $submitBtn.prop('disabled', true).html('Sending...');
 
-        // Close the modal
-        $('#modal-request-quote').foundation('reveal', 'close');
+        // Submit to BigCommerce contact form or API
+        // For now, we'll simulate the submission
+        // In production, you would send this to your backend or BigCommerce API
 
-        // Reset the form
-        this.reset();
+        // Simulate API call
+        setTimeout(() => {
+            // Email subject format: "{product.title} {sku} Quote Request from {Full Name}"
+            const emailSubject = `${formData.productTitle} ${formData.productSku} Quote Request from ${formData.fullname}`;
+
+            // In production, you would make an actual API call here:
+            // utils.api.getPage('/api/storefront/contact', {
+            //     template: 'quote-email',
+            //     config: formData
+            // }, (err, response) => { ... });
+
+            console.log('Quote Request Submitted:', {
+                subject: emailSubject,
+                data: formData
+            });
+
+            // Close request modal
+            $requestModal.foundation('reveal', 'close');
+
+            // Reset form
+            $quoteForm[0].reset();
+            $quoteForm.find('.has-error').removeClass('has-error');
+            $quoteForm.find('.form-field-error').removeClass('is-visible');
+
+            // Re-enable submit button
+            $submitBtn.prop('disabled', false).html(originalText);
+
+            // Show success modal
+            $successModal.foundation('reveal', 'open');
+        }, 1000);
+
+        return false;
+    });
+
+    // Handle success modal close button
+    $('[data-close-success-modal]').on('click', function() {
+        $successModal.foundation('reveal', 'close');
+    });
+
+    // Also handle modal close via X button
+    $successModal.find('.modal-close').on('click', function() {
+        $successModal.foundation('reveal', 'close');
     });
 }
