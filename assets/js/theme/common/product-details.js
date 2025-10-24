@@ -233,9 +233,17 @@ export default class Product {
         utils.api.cart.itemAdd(new FormData(form), (err, response) => {
             const errorMessage = err || response.data.error;
 
-            $addToCartBtn
-                .val(originalBtnVal)
-                .prop('disabled', false);
+            // Only re-enable button if it doesn't have the btn-disabled class (for $0 products)
+            if (!$addToCartBtn.hasClass('btn-disabled')) {
+                $addToCartBtn
+                    .val(originalBtnVal)
+                    .prop('disabled', false);
+            } else {
+                // Keep button disabled for $0 products
+                $addToCartBtn
+                    .val(originalBtnVal)
+                    .prop('disabled', true);
+            }
 
             this.$overlay.hide();
 

@@ -7,6 +7,14 @@ export default function() {
     const $requestModal = $('#modal-request-quote');
     const $successModal = $('#modal-quote-success');
 
+    // Initialize Foundation Reveal modals
+    if ($requestModal.length) {
+        $requestModal.foundation('reveal', 'reflow');
+    }
+    if ($successModal.length) {
+        $successModal.foundation('reveal', 'reflow');
+    }
+
     // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -61,8 +69,10 @@ export default function() {
         return isValid;
     }
 
-    // Pre-fill message when modal opens
-    $requestQuoteBtn.on('click', function() {
+    // Handle button click to open modal
+    $requestQuoteBtn.on('click', function(e) {
+        e.preventDefault();
+
         const $form = $quoteForm;
         const productTitle = $form.data('product-title');
         const productSku = $form.data('product-sku');
@@ -76,6 +86,9 @@ Quantity: ${quantity}`;
 
         // Set the message in the textarea
         $('#quote-message').val(message);
+
+        // Open the modal using Foundation Reveal
+        $requestModal.foundation('reveal', 'open');
     });
 
     // Real-time validation on blur

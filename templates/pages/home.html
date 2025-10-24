@@ -1,17 +1,10 @@
 ---
-products:
-    new:
-        limit: {{theme_settings.homepage_new_products_count}}
-    top_sellers:
-        limit: {{theme_settings.homepage_top_sellers_products_count}}
-    featured:
-        limit: {{theme_settings.homepage_featured_products_count}}
 carousel: {{theme_settings.homepage_show_carousel}}
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
 ---
-{{#partial "hero"}}    
+{{#partial "hero"}}
     {{{region name="home_below_menu"}}}
     <div class="container hl-slideshow-banner">
         <div class="row">
@@ -53,22 +46,18 @@ blog:
     {{{region name="home_below_banners_top"}}}
 
     <!-- BEGIN Home Bottom Content -->
-    {{> components/halothemes/homeShopByTopCategory}}    
+    {{> components/halothemes/homeShopByTopCategory}}
     <!-- END Home Bottom Content -->
     {{{region name="home_below_homeShopByTopCategory"}}}
-    
-    {{#if products.featured}}
-        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
-    {{/if}}
+
+
     {{{region name="home_below_featured_products"}}}
 
     <!-- BEGIN Home Middle Banner -->
-    {{> components/halothemes/home-middle-banner}}    
     <!-- END Home Middle Bottom -->
     {{{region name="home_below_home_middle_banner"}}}
 
     <!-- BEGIN Home Category Block & Banner -->
-    {{> components/halothemes/home-category-banner-block}}    
     <!-- END Home Category Block & Banner -->
     {{{region name="home_below_home_category_banner_block"}}}
 </div>
