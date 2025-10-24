@@ -451,19 +451,16 @@ h1.header-logo {
 	line-height:1.05;
 }
 
-// Prevent logo from causing layout shift
+// Prevent logo from causing layout shift while maintaining original appearance
 .header-logo-image {
-	max-width: 483px;
-	height: auto;
-	aspect-ratio: 483 / 98;
+	// Let the HTML width/height attributes control sizing
+	// Just ensure it displays properly
 	display: block;
-	// Ensure the logo doesn't resize unexpectedly
-	width: auto;
+	height: auto;
 
 	@media (max-width: 767px) {
 		max-width: 160px;
-		// Maintain aspect ratio on mobile
-		aspect-ratio: 483 / 98;
+		height: auto;
 	}
 }
 .header-panel .wishlist-link .icon svg {

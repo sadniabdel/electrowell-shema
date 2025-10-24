@@ -7,14 +7,6 @@ export default function() {
     const $requestModal = $('#modal-request-quote');
     const $successModal = $('#modal-quote-success');
 
-    // Initialize Foundation Reveal modals
-    if ($requestModal.length) {
-        $requestModal.foundation('reveal', 'reflow');
-    }
-    if ($successModal.length) {
-        $successModal.foundation('reveal', 'reflow');
-    }
-
     // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -69,9 +61,10 @@ export default function() {
         return isValid;
     }
 
-    // Handle button click to open modal
+    // Handle button click to open modal and pre-fill form
     $requestQuoteBtn.on('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
 
         const $form = $quoteForm;
         const productTitle = $form.data('product-title');
@@ -87,8 +80,15 @@ Quantity: ${quantity}`;
         // Set the message in the textarea
         $('#quote-message').val(message);
 
-        // Open the modal using Foundation Reveal
-        $requestModal.foundation('reveal', 'open');
+        // Trigger Foundation Reveal modal opening
+        // Use Foundation's built-in method or jQuery trigger
+        if ($requestModal.foundation) {
+            $requestModal.foundation('reveal', 'open');
+        } else {
+            // Fallback: manually show modal
+            $requestModal.css('display', 'block').addClass('open');
+            $('body').append('<div class="reveal-modal-bg" style="display: block;"></div>');
+        }
     });
 
     // Real-time validation on blur
@@ -171,7 +171,12 @@ Timestamp: ${new Date(formData.timestamp).toLocaleString()}
             });
 
             // Close request modal
-            $requestModal.foundation('reveal', 'close');
+            if ($requestModal.foundation) {
+                $requestModal.foundation('reveal', 'close');
+            } else {
+                $requestModal.css('display', 'none').removeClass('open');
+                $('.reveal-modal-bg').remove();
+            }
 
             // Reset form
             $quoteForm[0].reset();
@@ -182,7 +187,14 @@ Timestamp: ${new Date(formData.timestamp).toLocaleString()}
             $submitBtn.prop('disabled', false).html(originalText);
 
             // Show success modal
-            $successModal.foundation('reveal', 'open');
+            if ($successModal.foundation) {
+                $successModal.foundation('reveal', 'open');
+            } else {
+                $successModal.css('display', 'block').addClass('open');
+                if ($('.reveal-modal-bg').length === 0) {
+                    $('body').append('<div class="reveal-modal-bg" style="display: block;"></div>');
+                }
+            }
         })
         .catch(error => {
             console.error('Error submitting quote:', error);
@@ -192,7 +204,12 @@ Timestamp: ${new Date(formData.timestamp).toLocaleString()}
 
             // Still show success modal (contact form submission doesn't always return proper response)
             // Close request modal
-            $requestModal.foundation('reveal', 'close');
+            if ($requestModal.foundation) {
+                $requestModal.foundation('reveal', 'close');
+            } else {
+                $requestModal.css('display', 'none').removeClass('open');
+                $('.reveal-modal-bg').remove();
+            }
 
             // Reset form
             $quoteForm[0].reset();
@@ -200,19 +217,45 @@ Timestamp: ${new Date(formData.timestamp).toLocaleString()}
             $quoteForm.find('.form-field-error').removeClass('is-visible');
 
             // Show success modal
-            $successModal.foundation('reveal', 'open');
+            if ($successModal.foundation) {
+                $successModal.foundation('reveal', 'open');
+            } else {
+                $successModal.css('display', 'block').addClass('open');
+                if ($('.reveal-modal-bg').length === 0) {
+                    $('body').append('<div class="reveal-modal-bg" style="display: block;"></div>');
+                }
+            }
         });
 
         return false;
     });
 
     // Handle success modal close button
-    $('[data-close-success-modal]').on('click', function() {
-        $successModal.foundation('reveal', 'close');
+    $('[data-close-success-modal]').on('click', function(e) {
+        e.preventDefault();
+        if ($successModal.foundation) {
+            $successModal.foundation('reveal', 'close');
+        } else {
+            $successModal.css('display', 'none').removeClass('open');
+            $('.reveal-modal-bg').remove();
+        }
     });
 
     // Also handle modal close via X button
-    $successModal.find('.modal-close').on('click', function() {
-        $successModal.foundation('reveal', 'close');
+    $successModal.find('.modal-close').on('click', function(e) {
+        e.preventDefault();
+        if ($successModal.foundation) {
+            $successModal.foundation('reveal', 'close');
+        } else {
+            $successModal.css('display', 'none').removeClass('open');
+            $('.reveal-modal-bg').remove();
+        }
+    });
+
+    // Handle background click to close modals
+    $(document).on('click', '.reveal-modal-bg', function() {
+        $requestModal.css('display', 'none').removeClass('open');
+        $successModal.css('display', 'none').removeClass('open');
+        $('.reveal-modal-bg').remove();
     });
 }
